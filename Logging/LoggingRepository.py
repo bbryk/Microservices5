@@ -9,7 +9,6 @@ import json
 from consul import Consul, Check
 
 cl = Consul()
-# Initialize the Hazelcast client
 index, queue_name_data = cl.kv.get("queue_name")
 index, map_name_data = cl.kv.get("map_name")
 
@@ -23,11 +22,9 @@ class Item(BaseModel):
 
 class LoggingRepository():
     def __init__(self):
-        # self.map = dict()
         self.hz = hazelcast.HazelcastClient()
         self.map = self.hz.get_map(map_name).blocking()
     def addToMap(self,msg:Item):
-        # self.map[msg.id] = msg.content
         self.map.put(msg.id, msg.content)
         print(self.map)
 
