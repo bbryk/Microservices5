@@ -85,13 +85,13 @@ class FacadeController():
 
         ms_url = random.choice(ms_urls)
 
-
-
-        r1 = await self.fs.get_from_messages(ms_urls[0])
-        r2 = await self.fs.get_from_messages(ms_urls[1])
-        r3 = await self.fs.get_from_messages(ms_urls[2])
+        out = ""
+        for i in range(len(ms_urls)):
+            r1 = await self.fs.get_from_messages(ms_urls[i])
+            out += r1.text
+            out += " "
         print("From messages:")
-        print(r1.text +" "+ r2.text +" "+ r3.text)
+        print(out)
 
         return 0
 
