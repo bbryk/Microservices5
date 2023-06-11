@@ -54,8 +54,7 @@ class FacadeController():
 
     async def get_request(self):
         print(f"Received get in facade...")
-        # port = random.choice([8005, 8006, 8007])
-        # logging_url = f"http://127.0.0.1:{port}"
+
 
         services = cl.health.service(lg_name, passing=True)[1]
         log_urls = []
@@ -93,7 +92,6 @@ class FacadeController():
         r3 = await self.fs.get_from_messages(ms_urls[2])
         print("From messages:")
         print(r1.text +" "+ r2.text +" "+ r3.text)
-        # print(r1.text)
 
         return 0
 
@@ -102,12 +100,10 @@ class FacadeController():
 
 
         print(f"Received post: \"{item.content}\" in facade...")
-        # port = random.choice([8005, 8006, 8007])
-        # logging_url = f"http://127.0.0.1:{port}"
+
         services = cl.health.service(lg_name, passing=True)[1]
         log_urls = []
         for service in services:
-            # service = services[0]
             address = service['Service']['Address']
             port = service['Service']['Port']
             log_url = f"http://{address}:{port}"
@@ -121,13 +117,11 @@ class FacadeController():
             print("Something went wrong.")
 
 
-        # port = random.choice([8100, 8101, 8102])
-        # msg_url = f"http://127.0.0.1:{port}"
+
         services = cl.health.service(ms_name, passing=True)[1]
         ms_urls = []
         ports = []
         for service in services:
-            # service = services[0]
             address = service['Service']['Address']
             port = service['Service']['Port']
             ports.append(port)
