@@ -6,14 +6,9 @@ import requests
 import json
 from pydantic import BaseModel
 
-
-
-
 class Item(BaseModel):
     id:int
     content : str
-
-
 
 
 class StartItem(BaseModel):
