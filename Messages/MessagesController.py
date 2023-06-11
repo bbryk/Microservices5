@@ -9,14 +9,12 @@ import json
 from consul import Consul, Check
 
 cl = Consul()
-# Initialize the Hazelcast client
 index, queue_name_data = cl.kv.get("queue_name")
 index, map_name_data = cl.kv.get("map_name")
 
 queue_name = json.loads(queue_name_data['Value'].decode('utf-8'))
 map_name = json.loads(map_name_data['Value'].decode('utf-8'))
 
-# Initialize the Hazelcast client
 client = hazelcast.HazelcastClient()
 queue = client.get_queue(queue_name)
 
@@ -34,7 +32,6 @@ class MessagesController():
 
     async def get_request(self):
         print(f"Received get in messages...")
-        # Return the entire list of messages
         ms = ""
         for mes in self.messages:
             ms += mes.split("\"")[-2]
